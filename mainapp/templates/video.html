@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- bootstrap -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> 
+</head>
+
+<body>
+
+<div class="container">
+
+<div>
+<p class="text-left">{{video_name}}</p>
+<p class="text-right">{{video_number|add:"1"}}/{{video_count}}</p>
+</div>
+<video controls id="v" width="100%">
+{% load static %}
+<source src="{% static video_name %}" width="100%"　type="video/mp4">
+</video>
+
+<form method="post">
+    {% csrf_token %}
+    <p>このデータは....</p>
+    <div class="radiobox">
+        <input id="ok" type="radio" class="radiobutton" name="q" value="0" checked="checked">
+        <label for="ok">OK</label>
+        
+        <input id="ng" type="radio" class="radiobutton" name="q" value="1" >
+        <label for="ng">NG</label>
+
+        <!-- <input id="unknown" type="radio" class="radiobutton" name="q" value="2">
+        <label for="unknown">よく分からない</label> -->
+
+    <div class="m-3">
+        <!-- <input type="text" name="collision_time_in_video"> -->
+        <button class="btn-primary" name="video_number" value={{video_number}}>送信する</button>
+        <input type="hidden" name="answer_file_name" value={{answer_file_name}}>
+    </div>
+</form>
+</div>
+
+</body>
+</html>
+
+
+<style>
+.radiobutton {
+  display: none;
+}
+
+label {
+  border: solid;
+  border-color: pink;
+  border-radius: 10px;
+  /* background-color: skyblue; */
+  padding: 10px 20px;
+}
+
+.radiobutton:checked + label {
+  background-color: pink;
+}
+</style>
